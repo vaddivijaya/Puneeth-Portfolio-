@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Puneeth Uppala — Digital Marketing Strategist</title>
+<meta name="description" content="Digital Marketing Strategist with 2 years of experience in performance marketing, Google Ads, Meta Ads, and campaign management."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --bg:#080808;
+  --surface:#111111;
+  --surface2:#181818;
+  --border:#242424;
+  --text:#f0ece4;
+  --muted:#6b6560;
+  --accent:#ff4d1c;
+  --accent2:#ffb800;
+  --glow:rgba(255,77,28,0.15);
+}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:'Outfit',sans-serif;
+  font-weight:400;
+  line-height:1.6;
+  overflow-x:hidden;
+  cursor:none;
+}
+
+/* CUSTOM CURSOR */
+.cursor{
+  position:fixed;
+  width:10px;height:10px;
+  background:var(--accent);
+  border-radius:50%;
+  pointer-events:none;
+  z-index:9999;
+  transform:translate(-50%,-50%);
+  transition:transform 0.1s,width 0.2s,height 0.2s,background 0.2s;
+  mix-blend-mode:difference;
+}
+.cursor-ring{
+  position:fixed;
+  width:36px;height:36px;
+  border:1.5px solid rgba(255,77,28,0.5);
+  border-radius:50%;
+  pointer-events:none;
+  z-index:9998;
+  transform:translate(-50%,-50%);
+  transition:transform 0.18s ease-out,width 0.25s,height 0.25s;
+}
+
+/* NOISE OVERLAY */
+body::before{
+  content:'';
+  position:fixed;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events:none;z-index:1000;opacity:0.4;
+}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;
+  z-index:500;
+  padding:20px 5%;
+  display:flex;justify-content:space-between;align-items:center;
+  background:linear-gradient(to bottom,rgba(8,8,8,0.95),transparent);
+  backdrop-filter:blur(8px);
+}
+.nav-logo{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:22px;
+  letter-spacing:3px;
+  color:var(--text);
+  text-decoration:none;
+}
+.nav-logo span{color:var(--accent);}
+.nav-links{display:flex;gap:32px;list-style:none;}
+.nav-links a{
+  font-size:11px;font-family:'DM Mono',monospace;
+  letter-spacing:2px;text-transform:uppercase;
+  color:var(--muted);text-decoration:none;
+  transition:color 0.2s;
+}
+.nav-links a:hover{color:var(--accent);}
+.nav-cta{
+  background:var(--accent);color:white;
+  padding:8px 20px;border-radius:2px;
+  font-size:11px;font-family:'DM Mono',monospace;
+  letter-spacing:2px;text-decoration:none;
+  transition:background 0.2s,transform 0.2s;
+}
+.nav-cta:hover{background:#e03a0a;transform:translateY(-1px);}
+
+/* HERO */
+#hero{
+  min-height:100vh;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:0 5% 80px;
+  position:relative;
+  overflow:hidden;
+}
+.hero-bg-text{
+  position:absolute;
+  top:50%;left:50%;
+  transform:translate(-50%,-52%);
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(100px,18vw,280px);
+  letter-spacing:0.02em;
+  color:rgba(255,255,255,0.022);
+  white-space:nowrap;
+  pointer-events:none;
+  user-select:none;
+}
+.hero-tag{
+  font-family:'DM Mono',monospace;
+  font-size:11px;letter-spacing:4px;
+  color:var(--accent);
+  text-transform:uppercase;
+  margin-bottom:24px;
+  opacity:0;animation:fadeUp 0.7s ease 0.2s forwards;
+}
+.hero-name{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(60px,10vw,140px);
+  line-height:0.92;
+  letter-spacing:0.02em;
+  margin-bottom:28px;
+  opacity:0;animation:fadeUp 0.7s ease 0.35s forwards;
+}
+.hero-name .line2{
+  -webkit-text-stroke:1px rgba(240,236,228,0.3);
+  color:transparent;
+}
+.hero-desc{
+  max-width:540px;
+  font-size:15px;font-weight:300;
+  color:rgba(240,236,228,0.6);
+  line-height:1.8;
+  margin-bottom:40px;
+  opacity:0;animation:fadeUp 0.7s ease 0.5s forwards;
+}
+.hero-actions{
+  display:flex;gap:16px;flex-wrap:wrap;
+  opacity:0;animation:fadeUp 0.7s ease 0.65s forwards;
+}
+.btn-primary{
+  background:var(--accent);color:white;
+  padding:14px 32px;border-radius:2px;
+  font-size:12px;font-family:'DM Mono',monospace;
+  letter-spacing:2px;text-decoration:none;
+  transition:transform 0.2s,box-shadow 0.2s;
+  display:inline-flex;align-items:center;gap:10px;
+}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(255,77,28,0.35);}
+.btn-secondary{
+  border:1px solid var(--border);color:var(--text);
+  padding:14px 32px;border-radius:2px;
+  font-size:12px;font-family:'DM Mono',monospace;
+  letter-spacing:2px;text-decoration:none;
+  transition:border-color 0.2s,transform 0.2s;
+}
+.btn-secondary:hover{border-color:var(--accent);transform:translateY(-2px);}
+.hero-stats{
+  position:absolute;right:5%;bottom:80px;
+  display:flex;flex-direction:column;gap:24px;
+  opacity:0;animation:fadeUp 0.7s ease 0.8s forwards;
+}
+.stat{text-align:right;}
+.stat-num{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:44px;line-height:1;
+  color:var(--accent);
+}
+.stat-label{
+  font-size:9px;font-family:'DM Mono',monospace;
+  letter-spacing:2px;color:var(--muted);
+  text-transform:uppercase;
+}
+.scroll-hint{
+  position:absolute;bottom:30px;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+  font-size:9px;font-family:'DM Mono',monospace;
+  letter-spacing:3px;color:var(--muted);
+  opacity:0;animation:fadeIn 1s ease 1.2s forwards;
+}
+.scroll-line{
+  width:1px;height:40px;
+  background:linear-gradient(to bottom,var(--accent),transparent);
+  animation:scrollPulse 2s ease infinite;
+}
+
+/* SECTIONS */
+section{padding:100px 5%;}
+.section-eyebrow{
+  font-family:'DM Mono',monospace;
+  font-size:10px;letter-spacing:4px;
+  color:var(--accent);text-transform:uppercase;
+  margin-bottom:12px;
+}
+.section-title{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(40px,6vw,80px);
+  line-height:0.95;
+  margin-bottom:60px;
+}
+.section-title .outline{
+  -webkit-text-stroke:1px rgba(240,236,228,0.25);
+  color:transparent;
+}
+
+/* ABOUT */
+#about{background:var(--surface);}
+.about-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:60px;align-items:start;
+}
+.about-text p{
+  font-size:15px;font-weight:300;
+  color:rgba(240,236,228,0.7);
+  line-height:1.9;margin-bottom:20px;
+}
+.about-text strong{color:var(--text);font-weight:600;}
+.about-highlights{
+  display:flex;flex-direction:column;gap:16px;
+  margin-top:32px;
+}
+.highlight-item{
+  display:flex;align-items:center;gap:14px;
+  padding:14px 18px;
+  background:var(--surface2);
+  border:1px solid var(--border);
+  border-left:3px solid var(--accent);
+  border-radius:2px;
+  font-size:13px;font-weight:500;
+}
+.highlight-item .hi{font-size:18px;}
+.about-right{display:flex;flex-direction:column;gap:20px;}
+.info-card{
+  background:var(--surface2);
+  border:1px solid var(--border);
+  border-radius:4px;padding:28px;
+}
+.info-card h4{
+  font-family:'DM Mono',monospace;
+  font-size:10px;letter-spacing:3px;
+  color:var(--accent);margin-bottom:16px;
+  text-transform:uppercase;
+}
+.info-row{
+  display:flex;justify-content:space-between;
+  padding:8px 0;border-bottom:1px solid var(--border);
+  font-size:13px;
+}
+.info-row:last-child{border-bottom:none;}
+.info-row .label{color:var(--muted);}
+.info-row .val{font-weight:500;text-align:right;}
+
+/* SKILLS */
+#skills{background:var(--bg);}
+.skills-layout{
+  display:grid;
+  grid-template-columns:1fr 2fr;
+  gap:60px;align-items:start;
+}
+.skill-category{margin-bottom:48px;}
+.skill-cat-title{
+  font-family:'DM Mono',monospace;
+  font-size:10px;letter-spacing:3px;
+  color:var(--muted);text-transform:uppercase;
+  margin-bottom:20px;padding-bottom:10px;
+  border-bottom:1px solid var(--border);
+}
+.skill-bar-item{margin-bottom:16px;}
+.skill-bar-top{
+  display:flex;justify-content:space-between;
+  font-size:13px;font-weight:500;margin-bottom:6px;
+}
+.skill-bar-top .pct{
+  font-family:'DM Mono',monospace;
+  font-size:11px;color:var(--muted);
+}
+.bar-bg{
+  height:3px;background:var(--border);
+  border-radius:2px;overflow:hidden;
+}
+.bar-prog{
+  height:100%;border-radius:2px;
+  background:linear-gradient(90deg,var(--accent),var(--accent2));
+  width:0;transition:width 1.2s cubic-bezier(.4,0,.2,1);
+}
+.tools-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(110px,1fr));
+  gap:12px;
+}
+.tool-chip{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:4px;
+  padding:12px 14px;
+  font-size:12px;font-weight:500;
+  text-align:center;
+  transition:border-color 0.2s,transform 0.2s,background 0.2s;
+}
+.tool-chip:hover{
+  border-color:var(--accent);
+  background:var(--surface2);
+  transform:translateY(-2px);
+}
+.tool-chip .tool-icon{font-size:18px;margin-bottom:6px;display:block;}
+
+/* PROJECTS */
+#projects{background:var(--surface);}
+.projects-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(340px,1fr));
+  gap:24px;
+}
+.project-card{
+  background:var(--surface2);
+  border:1px solid var(--border);
+  border-radius:6px;
+  padding:32px;
+  position:relative;overflow:hidden;
+  transition:transform 0.25s,border-color 0.25s,box-shadow 0.25s;
+}
+.project-card::before{
+  content:'';
+  position:absolute;top:0;left:0;right:0;
+  height:2px;
+  background:linear-gradient(90deg,var(--accent),var(--accent2));
+  transform:scaleX(0);
+  transform-origin:left;
+  transition:transform 0.35s ease;
+}
+.project-card:hover{
+  transform:translateY(-4px);
+  border-color:rgba(255,77,28,0.3);
+  box-shadow:0 12px 40px rgba(0,0,0,0.4);
+}
+.project-card:hover::before{transform:scaleX(1);}
+.project-num{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:64px;color:rgba(255,255,255,0.04);
+  line-height:1;margin-bottom:-10px;
+  user-select:none;
+}
+.project-title{
+  font-size:18px;font-weight:700;
+  margin-bottom:8px;line-height:1.3;
+}
+.project-tag{
+  display:inline-block;
+  background:rgba(255,77,28,0.12);
+  border:1px solid rgba(255,77,28,0.25);
+  color:var(--accent);
+  font-size:10px;font-family:'DM Mono',monospace;
+  letter-spacing:1.5px;padding:3px 10px;
+  border-radius:2px;margin-bottom:16px;
+}
+.project-desc{
+  font-size:13.5px;font-weight:300;
+  color:rgba(240,236,228,0.6);
+  line-height:1.8;
+}
+.project-result{
+  margin-top:20px;
+  padding:12px 16px;
+  background:rgba(255,184,0,0.07);
+  border:1px solid rgba(255,184,0,0.15);
+  border-radius:3px;
+  font-size:12px;font-family:'DM Mono',monospace;
+  color:var(--accent2);letter-spacing:0.5px;
+}
+.project-result strong{font-weight:600;}
+
+/* EXPERIENCE */
+#experience{background:var(--bg);}
+.exp-item{
+  display:grid;grid-template-columns:200px 1fr;
+  gap:40px;margin-bottom:60px;
+  padding-bottom:60px;
+  border-bottom:1px solid var(--border);
+}
+.exp-item:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}
+.exp-left{}
+.exp-date{
+  font-family:'DM Mono',monospace;
+  font-size:11px;letter-spacing:2px;
+  color:var(--accent);margin-bottom:6px;
+}
+.exp-company{
+  font-size:13px;font-weight:600;
+  margin-bottom:4px;
+}
+.exp-location{font-size:12px;color:var(--muted);}
+.exp-role{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:32px;line-height:1.05;
+  margin-bottom:20px;letter-spacing:0.5px;
+}
+.exp-bullets{list-style:none;}
+.exp-bullets li{
+  font-size:14px;font-weight:300;
+  color:rgba(240,236,228,0.7);
+  padding:7px 0 7px 20px;
+  border-bottom:1px solid rgba(255,255,255,0.04);
+  position:relative;line-height:1.6;
+}
+.exp-bullets li::before{
+  content:'—';
+  position:absolute;left:0;
+  color:var(--accent);font-size:12px;
+}
+
+/* ACHIEVEMENTS */
+#achievements{background:var(--surface);}
+.achieve-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+  gap:20px;
+}
+.achieve-card{
+  background:var(--surface2);
+  border:1px solid var(--border);
+  border-radius:4px;
+  padding:28px;
+  transition:transform 0.2s,border-color 0.2s;
+}
+.achieve-card:hover{
+  transform:translateY(-3px);
+  border-color:rgba(255,77,28,0.3);
+}
+.achieve-icon{font-size:32px;margin-bottom:16px;display:block;}
+.achieve-title{
+  font-size:16px;font-weight:700;
+  margin-bottom:6px;
+}
+.achieve-year{
+  font-family:'DM Mono',monospace;
+  font-size:10px;letter-spacing:2px;
+  color:var(--accent);margin-bottom:12px;
+}
+.achieve-desc{
+  font-size:13px;font-weight:300;
+  color:rgba(240,236,228,0.6);line-height:1.7;
+}
+
+/* CONTACT */
+#contact{
+  background:var(--bg);
+  text-align:center;
+  padding:120px 5%;
+}
+#contact .section-title{margin-bottom:16px;}
+.contact-sub{
+  font-size:15px;font-weight:300;
+  color:rgba(240,236,228,0.5);
+  margin-bottom:60px;max-width:400px;
+  margin-left:auto;margin-right:auto;
+}
+.contact-links{
+  display:flex;flex-wrap:wrap;
+  justify-content:center;gap:16px;
+  margin-bottom:60px;
+}
+.contact-link{
+  display:flex;align-items:center;gap:10px;
+  background:var(--surface);
+  border:1px solid var(--border);
+  padding:14px 24px;border-radius:4px;
+  font-size:13px;font-weight:500;
+  color:var(--text);text-decoration:none;
+  transition:border-color 0.2s,transform 0.2s,box-shadow 0.2s;
+  font-family:'DM Mono',monospace;
+  letter-spacing:1px;
+}
+.contact-link:hover{
+  border-color:var(--accent);
+  transform:translateY(-2px);
+  box-shadow:0 6px 20px rgba(255,77,28,0.15);
+}
+.contact-link .icon{font-size:16px;}
+
+/* FOOTER */
+footer{
+  background:var(--surface);
+  border-top:1px solid var(--border);
+  padding:24px 5%;
+  display:flex;justify-content:space-between;align-items:center;
+  flex-wrap:wrap;gap:12px;
+}
+footer p{
+  font-size:11px;font-family:'DM Mono',monospace;
+  letter-spacing:1px;color:var(--muted);
+}
+footer a{color:var(--accent);text-decoration:none;}
+
+/* DIVIDER */
+.fancy-divider{
+  display:flex;align-items:center;gap:16px;
+  margin-bottom:60px;
+}
+.fancy-divider::before,.fancy-divider::after{
+  content:'';flex:1;height:1px;background:var(--border);
+}
+
+/* ANIMATIONS */
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(22px);}
+  to{opacity:1;transform:translateY(0);}
+}
+@keyframes fadeIn{
+  from{opacity:0;}to{opacity:1;}
+}
+@keyframes scrollPulse{
+  0%,100%{opacity:1;transform:scaleY(1);}
+  50%{opacity:0.4;transform:scaleY(0.6);}
+}
+.reveal{
+  opacity:0;transform:translateY(24px);
+  transition:opacity 0.7s ease,transform 0.7s ease;
+}
+.reveal.visible{opacity:1;transform:none;}
+
+/* MOBILE */
+@media(max-width:768px){
+  .about-grid,.skills-layout,.exp-item{grid-template-columns:1fr;}
+  .hero-stats{display:none;}
+  .nav-links{display:none;}
+  .projects-grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-logo">P<span>.</span>U</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#achievements">Awards</a></li>
+  </ul>
+  <a href="mailto:puneethuppala2803@gmail.com" class="nav-cta">Hire Me</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg-text">MARKETING</div>
+
+  <div class="hero-tag">✦ Available for New Opportunities · Bangalore & Hyderabad</div>
+  <h1 class="hero-name">
+    PUNEETH<br>
+    <span class="line2">UPPALA</span>
+  </h1>
+  <p class="hero-desc">
+    Digital Marketing Strategist with 2+ years driving measurable growth through performance campaigns, paid media, and data-driven content. Google Ads · Meta Ads · YouTube Ads.
+  </p>
+  <div class="hero-actions">
+    <a href="#projects" class="btn-primary">
+      View Work
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M7 1l6 6-6 6" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
+    </a>
+    <a href="mailto:puneethuppala2803@gmail.com" class="btn-secondary">Get In Touch</a>
+  </div>
+
+  <div class="hero-stats">
+    <div class="stat">
+      <div class="stat-num">2M+</div>
+      <div class="stat-label">Views · Qoli Campaign</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">2+</div>
+      <div class="stat-label">Years Experience</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">3</div>
+      <div class="stat-label">Ad Platforms Mastered</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">2×</div>
+      <div class="stat-label">Excellence Awards</div>
+    </div>
+  </div>
+
+  <div class="scroll-hint">
+    <div class="scroll-line"></div>
+    SCROLL
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-eyebrow reveal">01 / About</div>
+  <h2 class="section-title reveal">THE <span class="outline">STRATEGIST</span></h2>
+
+  <div class="about-grid reveal">
+    <div class="about-text">
+      <p>
+        I'm a <strong>Digital Marketing Strategist</strong> based in India, with hands-on expertise in the full paid media stack — Google Ads, Meta Ads, and YouTube Ads. I don't just run campaigns; I build systems that convert.
+      </p>
+      <p>
+        My edge comes from combining <strong>performance marketing rigour</strong> with a creative eye — I've produced content strategies that earned 2M+ organic views, built B2B lead pipelines, and managed brand presence across restaurants, SaaS products, and e-commerce.
+      </p>
+      <p>
+        Recognized with two <strong>Excellence Awards</strong> at Snovasys Software Solutions, I thrive in data-driven environments where every creative decision has a measurable outcome.
+      </p>
+      <div class="about-highlights">
+        <div class="highlight-item"><span class="hi">🎯</span> Performance Marketing & Paid Ads</div>
+        <div class="highlight-item"><span class="hi">📊</span> Analytics, CTR, CPC, ROI Optimization</div>
+        <div class="highlight-item"><span class="hi">🧠</span> B2B Lead Generation & LinkedIn Outreach</div>
+        <div class="highlight-item"><span class="hi">🎨</span> Creative Strategy & Content Calendars</div>
+      </div>
+    </div>
+    <div class="about-right">
+      <div class="info-card">
+        <h4>Quick Info</h4>
+        <div class="info-row"><span class="label">Location</span><span class="val">Open to Bangalore &amp; Hyderabad</span></div>
+        <div class="info-row"><span class="label">Experience</span><span class="val">2+ Years</span></div>
+        <div class="info-row"><span class="label">Current Role</span><span class="val">Digital Marketing Strategist</span></div>
+        <div class="info-row"><span class="label">Company</span><span class="val">Snovasys Software Solutions</span></div>
+        <div class="info-row"><span class="label">Availability</span><span class="val" style="color:#4caf84">Open to Offers</span></div>
+      </div>
+      <div class="info-card">
+        <h4>Education</h4>
+        <div class="info-row"><span class="label">B.Tech Civil Engg</span><span class="val">RGM College, 2023</span></div>
+        <div class="info-row"><span class="label">Diploma Civil</span><span class="val">SRIT, 2020</span></div>
+      </div>
+      <div class="info-card">
+        <h4>Certifications</h4>
+        <div class="info-row"><span class="label">HubSpot</span><span class="val">Social Media Mktg L1 &amp; L2</span></div>
+        <div class="info-row"><span class="label">HubSpot</span><span class="val">Social Media Certification</span></div>
+        <div class="info-row"><span class="label">YouTube</span><span class="val">Optimization &amp; SEO</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-eyebrow reveal">02 / Skills</div>
+  <h2 class="section-title reveal">WHAT I <span class="outline">DO</span></h2>
+
+  <div class="skills-layout reveal">
+    <div>
+      <div class="skill-category">
+        <div class="skill-cat-title">Core Competencies</div>
+        <div class="skill-bar-item">
+          <div class="skill-bar-top"><span>Google Ads</span><span class="pct">90%</span></div>
+          <div class="bar-bg"><div class="bar-prog" data-width="90"></div></div>
+        </div>
+        <div class="skill-bar-item">
+          <div class="skill-bar-top"><span>Meta Ads (FB/IG)</span><span class="pct">88%</span></div>
+          <div class="bar-bg"><div class="bar-prog" data-width="88"></div></div>
+        </div>
+        <div class="skill-bar-item">
+          <div class="skill-bar-top"><span>YouTube Ads</span><span class="pct">85%</span></div>
+          <div class="bar-bg"><div class="bar-prog" data-width="85"></div></div>
+        </div>
+        <div class="skill-bar-item">
+          <div class="skill-bar-top"><span>Google Analytics</span><span class="pct">82%</span></div>
+          <div class="bar-bg"><div class="bar-prog" data-width="82"></div></div>
+        </div>
+        <div class="skill-bar-item">
+          <div class="skill-bar-top"><span>Content Strategy</span><span class="pct">87%</span></div>
+          <div class="bar-bg"><div class="bar-prog" data-width="87"></div></div>
+        </div>
+        <div class="skill-bar-item">
+          <div class="skill-bar-top"><span>B2B Lead Generation</span><span class="pct">80%</span></div>
+          <div class="bar-bg"><div class="bar-prog" data-width="80"></div></div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="skill-cat-title" style="margin-bottom:20px;">Tools & Technologies</div>
+      <div class="tools-grid">
+        <div class="tool-chip"><span class="tool-icon">📊</span>Google Ads</div>
+        <div class="tool-chip"><span class="tool-icon">📘</span>Meta Ads</div>
+        <div class="tool-chip"><span class="tool-icon">▶️</span>YouTube Ads</div>
+        <div class="tool-chip"><span class="tool-icon">📈</span>GA4</div>
+        <div class="tool-chip"><span class="tool-icon">🔑</span>Keyword Planner</div>
+        <div class="tool-chip"><span class="tool-icon">💼</span>Sales Navigator</div>
+        <div class="tool-chip"><span class="tool-icon">🎨</span>Canva</div>
+        <div class="tool-chip"><span class="tool-icon">✂️</span>CapCut</div>
+        <div class="tool-chip"><span class="tool-icon">🖥</span>Figma</div>
+        <div class="tool-chip"><span class="tool-icon">🎬</span>Premiere Pro</div>
+        <div class="tool-chip"><span class="tool-icon">✨</span>After Effects</div>
+        <div class="tool-chip"><span class="tool-icon">📐</span>Adobe XD</div>
+        <div class="tool-chip"><span class="tool-icon">📊</span>PowerPoint</div>
+        <div class="tool-chip"><span class="tool-icon">🖼</span>Google Slides</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-eyebrow reveal">03 / Projects</div>
+  <h2 class="section-title reveal">SELECTED <span class="outline">WORK</span></h2>
+
+  <div class="projects-grid reveal">
+    <div class="project-card">
+      <div class="project-num">01</div>
+      <h3 class="project-title">Qoli Product — Social Media Campaign</h3>
+      <div class="project-tag">SOCIAL MEDIA · VIRAL</div>
+      <p class="project-desc">Executed a high-impact social media campaign leveraging trend-based content strategy. Optimized video and post formats for maximum reach, engagement, and lead generation across platforms.</p>
+      <div class="project-result">🏆 <strong>~2 Million Views</strong> achieved through strategic content optimization</div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-num">02</div>
+      <h3 class="project-title">Time Champ Product — Digital Marketing Campaign</h3>
+      <div class="project-tag">PERFORMANCE MARKETING</div>
+      <p class="project-desc">Promoted the Time Champ SaaS product across social media platforms using targeted content and paid campaign strategies. Drove measurable product awareness through data-driven content optimization.</p>
+      <div class="project-result">📈 Improved product awareness and measurable engagement lift</div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-num">03</div>
+      <h3 class="project-title">Restaurant Digital Marketing & Lead Gen</h3>
+      <div class="project-tag">SOCIAL MEDIA · LOCAL BUSINESS</div>
+      <p class="project-desc">Managed Instagram and social media accounts for a restaurant brand. Executed content strategies to improve brand visibility, customer engagement, and footfall through targeted campaigns.</p>
+      <div class="project-result">📍 Generated qualified leads via targeted campaigns + engagement analytics</div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-num">04</div>
+      <h3 class="project-title">LinkedIn Outreach & B2B Lead Generation</h3>
+      <div class="project-tag">B2B · LEAD GEN</div>
+      <p class="project-desc">Executed LinkedIn outreach campaigns targeting B2B audiences for business products. Generated qualified leads through personalized messaging sequences and strategic prospect targeting using Sales Navigator.</p>
+      <div class="project-result">🤝 Consistent pipeline of B2B leads through strategic outreach</div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-num">05</div>
+      <h3 class="project-title">Content Strategy & Creative Optimization</h3>
+      <div class="project-tag">CONTENT · STRATEGY</div>
+      <p class="project-desc">Designed and executed comprehensive content strategies for posts and short-form videos. Leveraged trend analysis and performance insights to continuously optimize content effectiveness and reach.</p>
+      <div class="project-result">📊 Trend-led strategy driving sustained organic growth</div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-num">06</div>
+      <h3 class="project-title">Multi-Platform Campaign Management</h3>
+      <div class="project-tag">GOOGLE ADS · META · YOUTUBE</div>
+      <p class="project-desc">End-to-end execution and optimization of digital advertising campaigns across Google Ads, Meta Ads, and YouTube. Analyzed CTR, CPC, conversion rates, and ROI metrics to drive data-backed improvements.</p>
+      <div class="project-result">📉 Improved CPC and CTR through continuous A/B testing</div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-eyebrow reveal">04 / Experience</div>
+  <h2 class="section-title reveal">WHERE I'VE <span class="outline">WORKED</span></h2>
+
+  <div class="reveal">
+    <div class="exp-item">
+      <div class="exp-left">
+        <div class="exp-date">MAY 2024 — PRESENT</div>
+        <div class="exp-company">Snovasys Software Solutions Ltd</div>
+        <div class="exp-location">India</div>
+      </div>
+      <div class="exp-right">
+        <div class="exp-role">Digital Marketing Strategist</div>
+        <ul class="exp-bullets">
+          <li>Executed and optimized digital advertising campaigns across Google Ads, Meta Ads, and YouTube Ads</li>
+          <li>Analyzed campaign performance using CTR, CPC, conversion rate, and ROI metrics to drive data-driven improvements</li>
+          <li>Improved engagement and reach through audience targeting, segmentation, and content optimization strategies</li>
+          <li>Developed campaign strategies and content calendars aligned with business objectives</li>
+          <li>Collaborated with cross-functional teams and stakeholders to deliver customer-focused marketing solutions</li>
+          <li>Conducted market research and trend analysis to identify optimization opportunities</li>
+          <li>Managed social media platforms to improve brand visibility and audience growth</li>
+          <li>Conducted webinars and campaigns to support lead generation and customer engagement</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section id="achievements">
+  <div class="section-eyebrow reveal">05 / Awards & Certifications</div>
+  <h2 class="section-title reveal">RECOGNITION &amp; <span class="outline">CERTS</span></h2>
+
+  <div class="achieve-grid reveal">
+    <div class="achieve-card">
+      <span class="achieve-icon">🏆</span>
+      <div class="achieve-title">Excellence Award</div>
+      <div class="achieve-year">2024</div>
+      <p class="achieve-desc">Recognized for outstanding performance in digital marketing campaigns, content strategy, and execution at Snovasys Software Solutions.</p>
+    </div>
+    <div class="achieve-card">
+      <span class="achieve-icon">🥇</span>
+      <div class="achieve-title">Excellence Award</div>
+      <div class="achieve-year">2025</div>
+      <p class="achieve-desc">Achieved excellence in digital marketing strategy implementation and effective team collaboration — back-to-back recognition.</p>
+    </div>
+    <div class="achieve-card">
+      <span class="achieve-icon">📜</span>
+      <div class="achieve-title">Social Media Marketing Certification</div>
+      <div class="achieve-year">HUBSPOT · LEVEL 1 &amp; 2</div>
+      <p class="achieve-desc">HubSpot certification covering advanced social media marketing strategies, campaign planning, and best practices.</p>
+    </div>
+    <div class="achieve-card">
+      <span class="achieve-icon">▶️</span>
+      <div class="achieve-title">YouTube Optimization &amp; SEO</div>
+      <div class="achieve-year">CERTIFICATION</div>
+      <p class="achieve-desc">Hands-on expertise in video ranking, keyword optimization, thumbnail strategy, and audience growth tactics for YouTube.</p>
+    </div>
+    <div class="achieve-card">
+      <span class="achieve-icon">📊</span>
+      <div class="achieve-title">Campaign Measurement &amp; Reporting</div>
+      <div class="achieve-year">SPECIALIZATION</div>
+      <p class="achieve-desc">Proficient in building performance dashboards, reporting frameworks, and communicating ROI to stakeholders.</p>
+    </div>
+    <div class="achieve-card">
+      <span class="achieve-icon">🎯</span>
+      <div class="achieve-title">Audience Segmentation &amp; Targeting</div>
+      <div class="achieve-year">SPECIALIZATION</div>
+      <p class="achieve-desc">Advanced skills in audience research, lookalike targeting, retargeting strategy, and persona-based content delivery.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-eyebrow reveal">06 / Contact</div>
+  <h2 class="section-title reveal">LET'S <span class="outline">CONNECT</span></h2>
+  <p class="contact-sub reveal">Open to opportunities in Bangalore &amp; Hyderabad. Let's discuss how I can drive results for your brand.</p>
+
+  <div class="contact-links reveal">
+    <a class="contact-link" href="mailto:puneethuppala2803@gmail.com">
+      <span class="icon">✉️</span> puneethuppala2803@gmail.com
+    </a>
+    <a class="contact-link" href="tel:8184890827">
+      <span class="icon">📞</span> +91 8184890827
+    </a>
+    <a class="contact-link" href="https://linkedin.com" target="_blank">
+      <span class="icon">💼</span> LinkedIn Profile
+    </a>
+  </div>
+
+  <a href="mailto:puneethuppala2803@gmail.com" class="btn-primary" style="margin:0 auto;display:inline-flex;">
+    Send Me a Message
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M7 1l6 6-6 6" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
+  </a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 Puneeth Uppala · Digital Marketing Strategist</p>
+  <p>Built with ❤️ · <a href="#hero">Back to top ↑</a></p>
+</footer>
+
+<script>
+// Custom cursor
+const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursorRing');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cursor.style.left=mx+'px';cursor.style.top=my+'px';});
+function animRing(){rx+=(mx-rx)*0.12;ry+=(my-ry)*0.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animRing);}
+animRing();
+document.querySelectorAll('a,button').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{cursor.style.width='18px';cursor.style.height='18px';ring.style.width='52px';ring.style.height='52px';});
+  el.addEventListener('mouseleave',()=>{cursor.style.width='10px';cursor.style.height='10px';ring.style.width='36px';ring.style.height='36px';});
+});
+
+// Scroll reveal
+const reveals=document.querySelectorAll('.reveal');
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});
+},{threshold:0.08});
+reveals.forEach(el=>obs.observe(el));
+
+// Skill bar animation
+const bars=document.querySelectorAll('.bar-prog');
+const barObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.style.width=e.target.dataset.width+'%';
+      barObs.unobserve(e.target);
+    }
+  });
+},{threshold:0.3});
+bars.forEach(b=>barObs.observe(b));
+</script>
+</body>
+</html>
